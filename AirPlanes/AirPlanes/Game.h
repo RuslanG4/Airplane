@@ -29,7 +29,6 @@ private:
 	void render();
 	
 	void setupFontAndText();
-	void setupSprite();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
@@ -38,6 +37,10 @@ private:
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
 
+
+	sf::Sprite m_smallPlane;
+	sf::Texture m_smallPlaneTexture;
+	void setUpSprites();
 };
 
 #endif // !GAME_HPP

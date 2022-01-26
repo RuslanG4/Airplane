@@ -21,7 +21,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
-	setupSprite(); // load texture
+	setUpSprites(); 
 }
 
 /// <summary>
@@ -111,8 +111,7 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
+	m_window.draw(m_smallPlane);
 	m_window.display();
 }
 
@@ -136,16 +135,17 @@ void Game::setupFontAndText()
 
 }
 
-/// <summary>
-/// load the texture and setup the sprite for the logo
-/// </summary>
-void Game::setupSprite()
+
+void Game::setUpSprites()
 {
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
+	sf::IntRect smallPlaneRect{ 362,115,87,69 };
+	sf::Vector2f smallPlaneStart{ 100.0f, 100.0f };
+
+	if (m_smallPlaneTexture.loadFromFile("ASSETS//IMAGES//planes.png"))
 	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
+		std::cout << "Error loading small plane" << std::endl;
 	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
+	m_smallPlane.setTexture(m_smallPlaneTexture);
+	m_smallPlane.setTextureRect(smallPlaneRect);
+	m_smallPlane.setPosition(smallPlaneStart);
 }
