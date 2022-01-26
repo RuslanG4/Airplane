@@ -40,7 +40,14 @@ private:
 
 	sf::Sprite m_smallPlane;
 	sf::Texture m_smallPlaneTexture;
+	sf::Vector2f m_smallPlaneLocation;
 	void setUpSprites();
+
+	sf::Vector2f m_smallVelocity{ -2.0f,2.0f };
+	float m_smallPlaneHeading = 225.0f;
+	void MovePlanes();
+
+	void checkBoundary(sf::Vector2f& t_location);
 };
 
 #endif // !GAME_HPP

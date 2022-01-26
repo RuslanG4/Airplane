@@ -103,6 +103,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+	MovePlanes();
+	checkBoundary(m_smallPlaneLocation);
 }
 
 /// <summary>
@@ -135,17 +137,46 @@ void Game::setupFontAndText()
 
 }
 
-
 void Game::setUpSprites()
 {
 	sf::IntRect smallPlaneRect{ 362,115,87,69 };
 	sf::Vector2f smallPlaneStart{ 100.0f, 100.0f };
 
-	if (m_smallPlaneTexture.loadFromFile("ASSETS//IMAGES//planes.png"))
+	if (!m_smallPlaneTexture.loadFromFile("ASSETS//IMAGES//planes.png"))
 	{
 		std::cout << "Error loading small plane" << std::endl;
 	}
 	m_smallPlane.setTexture(m_smallPlaneTexture);
 	m_smallPlane.setTextureRect(smallPlaneRect);
 	m_smallPlane.setPosition(smallPlaneStart);
+	m_smallPlane.setOrigin(smallPlaneRect.width / 2.0f, smallPlaneRect.height / 2.0f);
+	m_smallPlane.setRotation(m_smallPlaneHeading);
+	m_smallPlaneLocation = smallPlaneStart;
+}
+
+void Game::MovePlanes()
+{
+	m_smallPlaneLocation += m_smallVelocity;
+	m_smallPlane.setPosition(m_smallPlaneLocation);
+}
+
+void Game::checkBoundary(sf::Vector2f& t_location)
+{
+	
+	if (t_location.x < 0.f)
+	{
+		t_location.x = 0.f;
+	}
+	if (t_location.x > 800.f)
+	{
+		t_location.x = 800.f;
+	}
+	if (t_location.y < 0.f)
+	{
+		t_location.y = 0.f;
+	}
+	if (t_location.y > 600.0f)
+	{
+		t_location.y = 600.f;
+	}
 }
