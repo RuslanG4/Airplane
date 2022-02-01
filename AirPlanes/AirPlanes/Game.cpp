@@ -77,6 +77,14 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if (sf::Event::MouseButtonPressed == newEvent.type)
+		{
+			processMouse(newEvent);
+		}
+		if (sf::Event::MouseButtonReleased == newEvent.type)
+		{
+			processMouseSecond(newEvent);
+		}
 	}
 }
 
@@ -91,6 +99,30 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
+}
+
+void Game::processMouse(sf::Event t_event)
+{
+	click.x = t_event.mouseButton.x;
+	click.y = t_event.mouseButton.y;	
+}
+
+void Game::processMouseSecond(sf::Event t_event)
+{
+	releaseClick.x = t_event.mouseButton.x;
+	releaseClick.y = t_event.mouseButton.y;
+	sf::Vector2f velocity = click - releaseClick;
+	float headingRadians = std::atan2(velocity.y, velocity.x);
+	float headingDegree = 180.0f * headingRadians / static_cast<float>(3.14);
+	headingDegree += 90.0f;
+
+	if (sf::Mouse::Right == t_event.mouseButton.button)
+	{
+		m_smallVelocity = velocity / 50.0f;
+		m_smallPlaneHeading = headingDegree;
+		m_smallPlane.setRotation(headingDegree);
+	}
+
 }
 
 /// <summary>

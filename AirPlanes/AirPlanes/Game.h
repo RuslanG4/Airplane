@@ -25,6 +25,8 @@ private:
 
 	void processEvents();
 	void processKeys(sf::Event t_event);
+	void processMouse(sf::Event t_event);
+	void processMouseSecond(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
 	
@@ -48,6 +50,9 @@ private:
 	void MovePlanes();
 
 	void checkBoundary(sf::Vector2f& t_location);
+
+	sf::Vector2f releaseClick{ 0, 0 };
+	sf::Vector2f click{ 0, 0 };
 };
 
 #endif // !GAME_HPP
