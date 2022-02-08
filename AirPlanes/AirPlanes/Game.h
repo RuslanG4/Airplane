@@ -43,10 +43,15 @@ private:
 	sf::Sprite m_smallPlane;
 	sf::Texture m_smallPlaneTexture;
 	sf::Vector2f m_smallPlaneLocation;
+	sf::Sprite m_bigPlane;
+	sf::Texture m_bigPlaneTexture;
+	sf::Vector2f m_bigPlaneLocation;
 	void setUpSprites();
 
+	sf::Vector2f m_bigVelocity{ 1.f,-1.f };
 	sf::Vector2f m_smallVelocity{ -2.0f,2.0f };
 	float m_smallPlaneHeading = 225.0f;
+	float m_bigPlaneHeading = 45.0f;
 	void MovePlanes();
 
 	void checkBoundary(sf::Vector2f& t_location);

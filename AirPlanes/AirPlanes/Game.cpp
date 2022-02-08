@@ -122,6 +122,12 @@ void Game::processMouseSecond(sf::Event t_event)
 		m_smallPlaneHeading = headingDegree;
 		m_smallPlane.setRotation(headingDegree);
 	}
+	if (sf::Mouse::Left == t_event.mouseButton.button)
+	{
+		m_bigVelocity = velocity / 50.0f;
+		m_bigPlaneHeading = headingDegree;
+		m_bigPlane.setRotation(headingDegree);
+	}
 
 }
 
@@ -137,6 +143,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	MovePlanes();
 	checkBoundary(m_smallPlaneLocation);
+	checkBoundary(m_bigPlaneLocation);
 }
 
 /// <summary>
@@ -146,6 +153,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 	m_window.draw(m_smallPlane);
+	m_window.draw(m_bigPlane);
 	m_window.display();
 }
 
@@ -173,6 +181,8 @@ void Game::setUpSprites()
 {
 	sf::IntRect smallPlaneRect{ 362,115,87,69 };
 	sf::Vector2f smallPlaneStart{ 100.0f, 100.0f };
+	sf::IntRect bigPlaneRect{ 3,11,104,93 };
+	sf::Vector2f bigPlaneStart{ 300.0f, 500.0f };
 
 	if (!m_smallPlaneTexture.loadFromFile("ASSETS//IMAGES//planes.png"))
 	{
@@ -184,12 +194,25 @@ void Game::setUpSprites()
 	m_smallPlane.setOrigin(smallPlaneRect.width / 2.0f, smallPlaneRect.height / 2.0f);
 	m_smallPlane.setRotation(m_smallPlaneHeading);
 	m_smallPlaneLocation = smallPlaneStart;
+	if (!m_bigPlaneTexture.loadFromFile("ASSETS//IMAGES//planes.png"))
+	{
+		std::cout << "Error loading big plane" << std::endl;
+	}
+	m_bigPlane.setTexture(m_bigPlaneTexture);
+	m_bigPlane.setTextureRect(bigPlaneRect);
+	m_bigPlane.setPosition(bigPlaneStart);
+	m_bigPlane.setOrigin(bigPlaneRect.width / 2.0f, bigPlaneRect.height / 2.0f);
+	m_bigPlane.setRotation(m_bigPlaneHeading);
+	m_bigPlaneLocation = bigPlaneStart;
+
 }
 
 void Game::MovePlanes()
 {
 	m_smallPlaneLocation += m_smallVelocity;
 	m_smallPlane.setPosition(m_smallPlaneLocation);
+	m_bigPlaneLocation += m_bigVelocity;
+	m_bigPlane.setPosition(m_bigPlaneLocation);
 }
 
 void Game::checkBoundary(sf::Vector2f& t_location)

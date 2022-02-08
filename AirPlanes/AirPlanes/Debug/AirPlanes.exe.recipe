@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\rusla\OneDrive\Desktop\New folder (4)\Airplane\AirPlanes\Debug\AirPlanes.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\rusla\OneDrive\Desktop\New folder (4)\Airplane\AirPlanes\AirPlanes\ASSETS\FONTS\ariblk.ttf</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\rusla\OneDrive\Desktop\New folder (4)\Airplane\AirPlanes\AirPlanes\ASSETS\IMAGES\SFML-LOGO.png</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
