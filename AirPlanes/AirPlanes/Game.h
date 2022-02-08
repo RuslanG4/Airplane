@@ -41,23 +41,38 @@ private:
 
 
 	sf::Sprite m_smallPlane;
-	sf::Texture m_smallPlaneTexture;
+	sf::Texture m_smallPlaneTexture;     //small plane
 	sf::Vector2f m_smallPlaneLocation;
-	sf::Sprite m_bigPlane;
-	sf::Texture m_bigPlaneTexture;
-	sf::Vector2f m_bigPlaneLocation;
-	void setUpSprites();
 
-	sf::Vector2f m_bigVelocity{ 1.f,-1.f };
+	sf::Sprite m_bigPlane;
+	sf::Texture m_bigPlaneTexture;      //big plane
+	sf::Vector2f m_bigPlaneLocation;
+
+	sf::Sprite m_skySprite;
+	sf::Texture m_skyTexture;        //sky
+	void setUpSprites();      //draw our sprites
+
+	sf::Vector2f m_bigVelocity{ 1.f,-1.f };       //which way going, flips sprites
 	sf::Vector2f m_smallVelocity{ -2.0f,2.0f };
-	float m_smallPlaneHeading = 225.0f;
+
+	float m_smallPlaneHeading = 225.0f;      //angle at heading
 	float m_bigPlaneHeading = 45.0f;
 	void MovePlanes();
 
-	void checkBoundary(sf::Vector2f& t_location);
+	void checkBoundary(sf::Vector2f& t_location); //checks boundary to make sure they stay 
 
-	sf::Vector2f releaseClick{ 0, 0 };
-	sf::Vector2f click{ 0, 0 };
+	void debugSprite(sf::Sprite& t_sprite); //debug mode
+
+	float m_bigPlaneRadius = 52.0f;   // radius of bounding circle for big plane
+	float m_smallPaneRadius = 44.0f; // bounding radius of small plane
+
+	bool checkforCollision(sf::Vector2f t_locationOne, float t_radiusOne,sf::Vector2f t_locationTwo, float t_radiusTwo); //collision check
+	float vector2fLenght(sf::Vector2f t_vector); //methos for vector length
+
+	sf::Vector2f releaseClick{ 0, 0 }; //second click
+	sf::Vector2f click{ 0, 0 };   //initial click
+
+	bool m_debugGraphis{ true }; 
 };
 
 #endif // !GAME_HPP
